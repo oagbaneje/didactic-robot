@@ -25,7 +25,7 @@ def third_home():
     username = request.args.get('username') 
     surname =  request.args.get('surname')
     number_of_times = request.args.get('number_of_times')
-    if number_of_times.isdigit() is True:
+    if number_of_times is not None and number_of_times.isdigit() is True:
         number_of_times = int(number_of_times)
     else:
         number_of_times = 1
