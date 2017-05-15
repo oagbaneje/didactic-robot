@@ -1,7 +1,5 @@
-{% if number_of_times <= 0 %}
-<h1> Hello {{ username }}</h1>
-{% else %}
+{% if number_of_times > 0 %}
 {% for number in range(number_of_times) %}
-<h1>Hello {{ username }} </h1>
+<h1> Hello {{ username }} </h1>
 {% endfor %}
 {% endif %}
