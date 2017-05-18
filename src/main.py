@@ -24,12 +24,11 @@ def second_home():
 def third_home():
     username = request.args.get('username', default='') 
     surname =  request.args.get('surname', default='')
-    number_of_times = request.args.get('number_of_times')
-    if not number_of_times or number_of_times.isdigit() is False:
+    number_of_times = request.args.get('number_of_times', default='1')
+    if number_of_times.isdigit() is False:
         number_of_times = 1
     if not(username or surname):
          username = 'World'
     username = username + ' ' + surname
-
     return render_template('index3.html', username = username, number_of_times = int(number_of_times))
 
