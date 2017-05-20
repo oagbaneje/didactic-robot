@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% block body %}
+<div>
+{% if not search_input %}
+<div class="no_search">
+<h2>You didn't type in a search word!</h2>
+</div>
+ {{ super() }}
+</div>
+{% else %}
+<div>
+    <div class="left_content">
+         {% for data in results %}
+        <div class="g">
+            <!--m-->
+            <div data-hveid="32" data-ved="0ahUKEwi6zevKr_7TAhUJiSwKHblZAeUQFQggKAAwAA">
+                <div class="rc">
+                    <h3 class="r"><a href="{{data.url}}" onmousedown="return rwt(this,'','','','1','AFQjCNFKiObWsstA_tSpH_tNsUK_VKY4EA','eFKaff1ZCmdBpLeG3og3Uw','0ahUKEwi6zevKr_7TAhUJiSwKHblZAeUQFgghMAA','','',event)"
+                            data-href="http://jinja.pocoo.org/">{{ data.title }}</a></h3>
+                    {{ data.summary | safe }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="right_content">
+        You searched for {{ search_input }}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
