@@ -1,3 +1,86 @@
-<h1>
-    Hello {% if username %}{{ username }}{% else %}World{% endif %}
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Googl</title>
+    <link rel="stylesheet" href="{{ url_for("static", filename="style.css")}}">
+</head>
+
+<body>
+    <center>
+        <div style="height:233px;margin-top:89px" id="lga">
+            <div style="padding-top:109px">
+                <style>
+                    #hplogo {
+                        background: url(/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png) no-repeat
+                    }
+
+                    @media (-webkit-max-device-pixel-ratio:1),
+                    (max-resolution:96dpi) {
+                        #hplogo {
+                            background: url(/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png) no-repeat
+                        }
+                    }
+                </style>
+                <div style="background-size:272px 92px;height:92px;width:272px" title="Google" align="left" id="hplogo" onload="window.lol&&lol()">
+                    <img src="{{ url_for("static", filename="googl_logo.png ")}}"/>
+
+                </div>
+                            <form class="tsf" action="/search" style="overflow:visible" id="tsf" method="GET" name="f" onsubmit="return q.value!=''"
+                                role="search">
+                                <div data-jibp="" data-jiis="uc" id="tophf">
+                                    <input name="site" value="" type="text" , id="searchbox">
+                                </div>
+                            </form>
+            </div>
+        </div>
+        <div style="height:118px"></div>
+        <div data-jibp="h" data-jiis="uc" id="prm-pt" style="margin-top:12px">
+            <style>
+                #als {
+                    font-size: small;
+                    margin-bottom: 24px
+                }
+
+                #_eEe {
+                    display: inline-block;
+                    line-height: 28px;
+                }
+
+                #_eEe a {
+                    padding: 0 3px;
+                }
+
+                ._lEe {
+                    display: inline-block;
+                    margin: 0 2px;
+                    white-space: nowrap
+                }
+
+                ._PEe {
+                    display: inline-block;
+                    margin: 0 2px
+                }
+            </style>
+            <script>
+                window.gbar && gbar.up && gbar.up.tp && gbar.up.tp();
+            </script>
+            <div id="als">
+                <div id="_eEe">Google.com.ng offered in: <a href="https://www.google.com.ng/setprefs?sig=0_u5dWuqWJAvzyf8cFu7ls3-dimf8%3D&amp;hl=ha&amp;source=homepage"
+                        onmousedown="return rwt(this,'','','','','AFQjCNHu6SGkSUCxWTfDpoA4qo0WUVrKug','RK2Hb1ryx-LYRwGqXdH9TQ','0ahUKEwi-kK-ki_7TAhUGFywKHSLADAkQ2ZgBCAw','','',event)">Hausa</a>                    <a href="https://www.google.com.ng/setprefs?sig=0_u5dWuqWJAvzyf8cFu7ls3-dimf8%3D&amp;hl=ig&amp;source=homepage"
+                        onmousedown="return rwt(this,'','','','','AFQjCNEFOs8r_swwzfPuptcKUyEur6PIfQ','RgRctaN3mNvIh0PzWDJT5Q','0ahUKEwi-kK-ki_7TAhUGFywKHSLADAkQ2ZgBCA0','','',event)">Igbo</a>                    <a href="https://www.google.com.ng/setprefs?sig=0_u5dWuqWJAvzyf8cFu7ls3-dimf8%3D&amp;hl=yo&amp;source=homepage"
+                        onmousedown="return rwt(this,'','','','','AFQjCNFOEaG6NP6OXZ055tIG8UvupnPxKA','TL5z3-26vhX_HiTTerHRLw','0ahUKEwi-kK-ki_7TAhUGFywKHSLADAkQ2ZgBCA4','','',event)">Èdè Yorùbá</a>                    <a href="https://www.google.com.ng/setprefs?sig=0_u5dWuqWJAvzyf8cFu7ls3-dimf8%3D&amp;hl=pcm&amp;source=homepage"
+                        onmousedown="return rwt(this,'','','','','AFQjCNG4pp2zaFk_hcju5IdDUXXro7fmOQ','Ap5kl4pt_VHn8RXZ2_T5pA','0ahUKEwi-kK-ki_7TAhUGFywKHSLADAkQ2ZgBCA8','','',event)">Pidgin</a>                    </div>
+            </div>
+            <div id="swml"></div>
+        </div>
+    </center>
+    <script>
+        function lol() { }
+    </script>
+</body>
+
+</html>
