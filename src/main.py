@@ -9,6 +9,7 @@ def home():
 
 
 @app.route('/search')
+@app.route('/results.html')
 def search():
     site = request.args.get('site')
     data = {

@@ -1,16 +1,24 @@
-{% extends 'index.html' %}
-{% block body %}
+{% extends 'index.html' %} {% block body %}
 <div>
-{% if not search_input %}
-<div class="no_search">
-<h2>You didn't type in a search word!</h2>
-</div>
- {{ super() }}
+    {% if not search_input %}
+    <div class="no_search">
+        <h2>You didn't type in a search word!</h2>
+    </div>
+    {{ super() }}
 </div>
 {% else %}
 <div>
+    <div class="jumbotron" style="background-color:#fafafa">
+        <form class="tsf" action="/search" style="overflow:visible" id="tsf" method="GET" name="f" onsubmit="return q.value!=''"
+            role="search">
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon1" style="background-color:#fafafa"><img src="{{ url_for("static", filename="googl_logo_small.png ")}}"/></span>
+                <input name="site" type="text" class="form-control"  aria-describedby="sizing-addon1">
+            </div>
+        </form>
+    </div>
     <div class="left_content">
-         {% for data in results %}
+        {% for data in results %}
         <div class="g">
             <!--m-->
             <div data-hveid="32" data-ved="0ahUKEwi6zevKr_7TAhUJiSwKHblZAeUQFQggKAAwAA">
@@ -27,5 +35,4 @@
         You searched for {{ search_input }}
     </div>
 </div>
-{% endif %}
-{% endblock %}
+{% endif %} {% endblock %}
