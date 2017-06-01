@@ -20,6 +20,7 @@ class SearchResult(db.Model):
     title = db.Column(db.String(100))
     url = db.Column(db.String)
     summary = db.Column(db.String())
+    results = db.relationship('SearchCounter', backref='search_result', lazy='dynamic')
 
     def __repr__(self):
         return "<SearchResult {}>".format(self.title)
@@ -50,6 +51,19 @@ class SearchResult(db.Model):
         inst = cls(**data)
         inst.save()
 
+class SearchCounter(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    result_title = db.Column(db.Integer, db.ForeignKey('search_result.id'))
+    counter = db.Column(db.Integer, default=0)
+
+    def __repr__(self):
+        return '<SearchCounter {}>'.format(self.result_title)
+
+    def increment(self):
+        self.counter += self.counter+1
+        session.commit
+
+
 db.init_app(app)
 
 class SearchResultForm(FlaskForm):
@@ -59,7 +73,7 @@ class SearchResultForm(FlaskForm):
 
     def save(self):
         SearchResult.create(title=self.data['title'], url=self.data['url'], summary=self.data['summary'])
-
+    
 def create_tables():
     with app.app_context():
         db.create_all()
@@ -73,8 +87,8 @@ def home():
 @app.route('/search')
 @app.route('/results.html')
 def search():
-    site = request.args.get('site')
-    data = SearchResult.query.all()
+    site = request.args.get('site','')
+    data = SearchResult.query.filter(SearchResult.title.contains(site))
     return render_template('results.html', results = data, search_input=site)
 
 @app.route('/admin', methods=['POST', 'GET'])
@@ -83,5 +97,5 @@ def admin_view():
     if request.method == 'POST':
         if form.validate_on_submit():
             form.save()
-            return redirect('search')
+            return redirect('/')
     return render_template('admin.html', form=form)
