@@ -3,3 +3,5 @@ venv/
 startup.sh
 *pyc
 *__pycache__
+*db
+*sqlite
