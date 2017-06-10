@@ -23,7 +23,7 @@
             <!--m-->
             <div data-hveid="32" data-ved="0ahUKEwi6zevKr_7TAhUJiSwKHblZAeUQFQggKAAwAA">
                 <div class="rc">
-                    <h3 class="r"><a href="{{data.url}}" onmousedown="return rwt(this,'','','','1','AFQjCNFKiObWsstA_tSpH_tNsUK_VKY4EA','eFKaff1ZCmdBpLeG3og3Uw','0ahUKEwi6zevKr_7TAhUJiSwKHblZAeUQFgghMAA','','',event)">{{ data.title }} | {{data.counter.count}}</a></h3>
+                    <h3 class="r"><a href="{{data.url}}" onmousedown="return rwt(this,'','','','1','AFQjCNFKiObWsstA_tSpH_tNsUK_VKY4EA','eFKaff1ZCmdBpLeG3og3Uw','0ahUKEwi6zevKr_7TAhUJiSwKHblZAeUQFgghMAA','','',event)">{{ data.title }} | {{data.counter.count}} | {{ session_counter[data.title] }}</a></h3>
                     {{ data.summary | safe }}
                 </div>
             </div>

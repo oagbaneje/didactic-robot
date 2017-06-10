@@ -64,6 +64,7 @@ class SearchResult(db.Model):
 class SearchCounter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     count = db.Column(db.Integer)
+    count_per_session = db.Column(db.Integer)
     result_id = db.Column(db.Integer, db.ForeignKey('search_result.id'))
 
     def save(self):
