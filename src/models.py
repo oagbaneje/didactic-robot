@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import or_, and_
+from sqlalchemy import or_, and_, func
 
 db = SQLAlchemy()
 
@@ -32,17 +32,17 @@ class SearchResult(db.Model):
         new_data.save()
 
     @classmethod
-    def search(cls,search_string):
-        split_result = search_string.split(" ")
-        result_title = [cls.title.contains(search_item) for search_item in split_result]
-        result_summary = [cls.summary.contains(search_item) for search_item in split_result]
-        query_1 = cls.query.filter(and_(*result_title)).all()
-        query_2 = cls.query.filter(and_(*result_summary)).all()
-        result = cls.query.filter(or_(*result_summary)).all()
-        if len(result) > 0:
-             for i in result:
+    def search(cls,search_string=None):
+        query = cls.query
+        if search_string:
+            search_query = "%{}%".format(search_string)
+            title_query = cls.title.ilike(search_query)
+            content_query = cls.summary.ilike(search_query)
+            query = (query.filter(or_(title_query, content_query))).all()
+        if len(query) > 0:
+             for i in query:
                  i.increment_counter()
-        return result
+        return query
 
     @classmethod
     def populate_with_data(cls):
