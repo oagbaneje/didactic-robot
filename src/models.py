@@ -90,6 +90,11 @@ class SearchCounter(db.Model):
         self.count_per_session = 1
         self.save()
 
+    def set_to_zero(self):
+        self.count_per_session = 0
+        self.save()
+        
     def reset_counter(self):
         self.count = 0
         self.save()
+
