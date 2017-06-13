@@ -20,11 +20,13 @@ class SearchResult(db.Model):
     def counter(self):
         result =  SearchCounter.query.filter(SearchCounter.result_id == self.id).first()
         if not result:
-            result = SearchCounter.create(result_id=self.id, count=0)
+            result = SearchCounter.create(result_id=self.id, count=0, count_per_session=0)
         return result
 
     def increment_counter(self):
          return self.counter.increment()
+
+    
 
     @classmethod
     def create(cls, **kwargs):
@@ -42,6 +44,8 @@ class SearchResult(db.Model):
         if len(query) > 0:
              for i in query:
                  i.increment_counter()
+                 if not i.counter.count_per_session:
+                     i.counter.set_to_one()
         return query
 
     @classmethod
@@ -80,6 +84,10 @@ class SearchCounter(db.Model):
 
     def increment(self):
         self.count += 1
+        self.save()
+    
+    def set_to_one(self):
+        self.count_per_session = 1
         self.save()
 
     def reset_counter(self):
