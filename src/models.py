@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import or_, and_, func
 
 db = SQLAlchemy()
-
+session_counter = 0
 class SearchResult(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
@@ -36,16 +36,18 @@ class SearchResult(db.Model):
     @classmethod
     def search(cls,search_string=None):
         query = cls.query
+        global session_counter
         if search_string:
             search_query = "%{}%".format(search_string)
             title_query = cls.title.ilike(search_query)
             content_query = cls.summary.ilike(search_query)
             query = (query.filter(or_(title_query, content_query))).all()
         if len(query) > 0:
-             for i in query:
-                 i.increment_counter()
-                 if not i.counter.count_per_session:
-                     i.counter.set_to_one()
+            for i in query:
+                i.increment_counter()
+                if session_counter== 0:
+                    i.counter.set_to_one()
+            session_counter += 1
         return query
 
     @classmethod
