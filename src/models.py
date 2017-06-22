@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import or_, and_, func
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 session_counter = 0
@@ -100,3 +101,7 @@ class SearchCounter(db.Model):
         self.count = 0
         self.save()
 
+
+class User(UserMixin):
+    id = 23
+    

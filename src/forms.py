@@ -11,3 +11,17 @@ class SearchResultForm(FlaskForm):
 
     def save(self):
         SearchResult.create(title=self.data['title'], url=self.data['url'], summary=self.data['summary'])
+
+class LoginForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired()])
+    password = StringField("Password", validators=[DataRequired()])
+
+    def validate(self):
+        result = super().validate()
+        email = self.data['email']
+        password = self.data['password']
+        if email and password:
+            if email == 'learner@example.com' and password== 'password':
+                return True
+            self.email.errors.append('The email/password combination is wrong')
+        return False
