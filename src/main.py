@@ -18,4 +18,4 @@ def create_tables():
         db.create_all()
 
 from .views import *
-views.login_manager.init_app(app)
+login_manager.init_app(app)
